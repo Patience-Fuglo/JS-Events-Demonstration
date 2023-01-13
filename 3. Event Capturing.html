@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Event Capturing Demo</title>
-        <link rel="stylesheet" href="./assets/style.css">
-    </head>
-    <body>
-        <h1>Interactive Web Pages - Events Demonstration</h1>
-        <h2>Event Capturing</h2>
-        <p>Click 'Click Me' below view the concept of event capturing.</p>
-        <hr>
-        <div class="wrap">DIV
-            <p class="hint">P
-                <a href="#">A</a>
-            </p>
-        </div>
-        <h2>Captured elements show in <span>chartreuse</span>.</h2>
+<head>
+<meta charset="utf-8">
+<title>Event Capturing Demo</title>
+<style type="text/css">
+    div, p, a{
+        padding: 15px 30px;
+        display: block;
+        border: 2px solid #000;
+        background: #fff;
+    }
+</style>
+</head>
+<body>
 
-        <script>
-            let elems = document.querySelectorAll('div.wrap, .wrap p, .wrap a')
+<h1>5.6.5 - Interactive Web Pages - Lesson Companion</h1>
+<h2>Event Capturing</h2>
+<br>
+<br>
+<p> Click 'Click Me' below view the concept of event capturing </p>
+<div id="wrap">DIV
+    <p class="hint">P
+        <a href="#">A</a>
+    </p>
+</div>
 
-            function showTagName() {
-                clear(this.tagName)
-                this.style.backgroundColor = 'chartreuse'
-            }
+<div id="wrap">
+<p class="hint">
+<a href="#">Click Me</a>
+</p>
 
-            function clear(tagName) {
-                if (tagName == 'DIV') {
-                    document.querySelector('.wrap p').style.backgroundColor = 'gray'
-                    document.querySelector('.wrap a').style.backgroundColor = 'gray'
-                }
-                else if (tagName == 'P') {
-                    document.querySelector('.wrap a').style.backgroundColor = 'gray'
-                }
-            }
-            
-            for(let elem of elems) {
-                elem.addEventListener('click', showTagName, true)
-            }
-        </script>
-    </body>
+</div>
+
+<script>
+    function showTagName() {
+        alert("Capturing: "+ this.tagName);
+    }
+    
+    var elems = document.querySelectorAll("div, p, a");
+    for(let elem of elems) {
+        elem.addEventListener("click", showTagName, true);
+    }
+</script>
+</body>
 </html>
